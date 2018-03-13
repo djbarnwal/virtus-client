@@ -4,3 +4,4 @@ tweet-preprocessor==0.5.0
 nltk==3.2.2
 autocorrect==0.3.0
 tensorflow==1.0.1
+Flask==0.12
