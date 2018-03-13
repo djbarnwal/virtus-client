@@ -35,22 +35,22 @@ vocab_index_=[]
 vocab_index=[]
 
 # load json and create model
-json_file = open('model.json', 'r')
+json_file = open('./model.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # load weights into new model
-loaded_model.load_weights("model.h5")
+loaded_model.load_weights("./model.h5")
 # evaluate loaded model on test data
 loaded_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # load json and create model
-json_file = open('model_rs.json', 'r')
+json_file = open('./model_rs.json', 'r')
 loaded_model_json_ = json_file.read()
 json_file.close()
 loaded_model_ = model_from_json(loaded_model_json_)
 # load weights into new model
-loaded_model_.load_weights("model_rs.h5")
+loaded_model_.load_weights("./model_rs.h5")
 # evaluate loaded model on test data
 loaded_model_.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
@@ -90,7 +90,7 @@ def sent_index_(tweets):
 def lstm(obj):
     global vocab_index
     global loaded_model
-    f=open("vocab_index_macy_.pickle","rb")
+    f=open("./vocab_index_macy_.pickle","rb")
     vocab_index=pickle.load(f)
     tweets=np.array([obj])
     x=sent_index(tweets)
@@ -103,7 +103,7 @@ def lstm(obj):
 def lstm_rs(obj):
     global vocab_index_
     global loaded_model_
-    f=open("vocab_index_new.pickle","rb")
+    f=open("./vocab_index_new.pickle","rb")
     vocab_index_=pickle.load(f)
     tweets=np.array([obj])
     x=sent_index_(tweets)
@@ -158,4 +158,4 @@ def label():
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT',5000))
-    app.run(host='0.0.0.0',port=port,debug=True)
+    app.run(host='localhost',port=port)
