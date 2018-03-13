@@ -8,6 +8,7 @@ from nltk.tokenize import TweetTokenizer as tt
 from autocorrect import spell
 from flask import Flask, jsonify, request
 #from flask_compress import Compress
+import os
 
 app = Flask(__name__)
 #Compress(app)
@@ -156,4 +157,5 @@ def label():
 
 
 if __name__ == '__main__':
-    app.run(host='localhost')
+    port = int(os.environ.get('PORT',5000))
+    app.run(host='0.0.0.0',port=port,debug=True)
