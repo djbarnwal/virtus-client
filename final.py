@@ -7,10 +7,13 @@ import preprocessor as p
 from nltk.tokenize import TweetTokenizer as tt
 from autocorrect import spell
 from flask import Flask, jsonify, request
+from flask_cors import CORS, cross_origin
 #from flask_compress import Compress
 import os
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 #Compress(app)
 
 '''
@@ -131,6 +134,7 @@ def tokenize(tweet):
 
 
 @app.route('/predict', methods=['POST'])
+@cross_origin()
 def label():
     tweet = request.form['tweet']
 
